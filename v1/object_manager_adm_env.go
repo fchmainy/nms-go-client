@@ -9,7 +9,7 @@ import (
 func (objMgr *ObjectManager) CreateEnvironment(
 	name string,
 	description string,
-	tags string,
+	tags []string,
 	eas EA) (*RecordA, error) {
 
 	cleanName := strings.TrimSpace(name)
