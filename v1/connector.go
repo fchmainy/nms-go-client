@@ -277,7 +277,7 @@ func (wrb *NapiRequestBuilder) BuildBody(t RequestType, obj NMSObject) []byte {
 	return objJSON
 }
 
-func (wrb *NapiRequestBuilder) BuildRequest(t RequestType, obj IBObject, ref string, queryParams *QueryParams) (req *http.Request, err error) {
+func (wrb *NapiRequestBuilder) BuildRequest(t RequestType, obj NMSObject, ref string, queryParams *QueryParams) (req *http.Request, err error) {
 	var (
 		objType      string
 		returnFields []string
@@ -406,7 +406,7 @@ func (c *Connector) DeleteObject(ref string) (refRes string, err error) {
 	return
 }
 
-func (c *Connector) UpdateObject(obj IBObject, ref string) (refRes string, err error) {
+func (c *Connector) UpdateObject(obj NMSObject, ref string) (refRes string, err error) {
 	queryParams := NewQueryParams(false, nil)
 	refRes = ""
 	resp, err := c.makeRequest(UPDATE, obj, ref, queryParams)
