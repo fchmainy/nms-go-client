@@ -71,8 +71,8 @@ func NewTransportConfig(sslVerify string, httpRequestTimeout int, httpPoolConnec
 type HttpRequestBuilder interface {
 	Init(HostConfig, AuthConfig)
 	BuildUrl(r RequestType, objType string, ref string, returnFields []string, queryParams *QueryParams) (urlStr string)
-	BuildBody(r RequestType, obj IBObject) (jsonStr []byte)
-	BuildRequest(r RequestType, obj IBObject, ref string, queryParams *QueryParams) (req *http.Request, err error)
+	BuildBody(r RequestType, obj NMSObject) (jsonStr []byte)
+	BuildRequest(r RequestType, obj NMSObject, ref string, queryParams *QueryParams) (req *http.Request, err error)
 }
 
 type HttpRequestor interface {
@@ -90,10 +90,10 @@ type NapiHttpRequestor struct {
 }
 
 type NMSConnector interface {
-	CreateObject(obj IBObject) (ref string, err error)
-	GetObject(obj IBObject, ref string, queryParams *QueryParams, res interface{}) error
+	CreateObject(obj NMSObject) (ref string, err error)
+	GetObject(obj NMSObject, ref string, queryParams *QueryParams, res interface{}) error
 	DeleteObject(ref string) (refRes string, err error)
-	UpdateObject(obj IBObject, ref string) (refRes string, err error)
+	UpdateObject(obj NMSObject, ref string) (refRes string, err error)
 }
 
 type Connector struct {
