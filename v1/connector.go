@@ -254,7 +254,7 @@ func (wrb *NapiRequestBuilder) BuildUrl(t RequestType, objType string, ref strin
 	return u.String()
 }
 
-func (wrb *NapiRequestBuilder) BuildBody(t RequestType, obj IBObject) []byte {
+func (wrb *NapiRequestBuilder) BuildBody(t RequestType, obj NMSObject) []byte {
 	var objJSON []byte
 	var err error
 
@@ -306,7 +306,7 @@ func (wrb *NapiRequestBuilder) BuildRequest(t RequestType, obj IBObject, ref str
 	return
 }
 
-func (c *Connector) makeRequest(t RequestType, obj IBObject, ref string, queryParams *QueryParams) (res []byte, err error) {
+func (c *Connector) makeRequest(t RequestType, obj NMSObject, ref string, queryParams *QueryParams) (res []byte, err error) {
 	var req *http.Request
 	req, err = c.requestBuilder.BuildRequest(t, obj, ref, queryParams)
 	if err != nil {
@@ -330,7 +330,7 @@ func (c *Connector) makeRequest(t RequestType, obj IBObject, ref string, queryPa
 	return
 }
 
-func (c *Connector) CreateObject(obj IBObject) (ref string, err error) {
+func (c *Connector) CreateObject(obj NMSObject) (ref string, err error) {
 	ref = ""
 	queryParams := NewQueryParams(false, nil)
 	resp, err := c.makeRequest(CREATE, obj, "", queryParams)
@@ -349,7 +349,7 @@ func (c *Connector) CreateObject(obj IBObject) (ref string, err error) {
 }
 
 func (c *Connector) GetObject(
-	obj IBObject, ref string,
+	obj NMSObject, ref string,
 	queryParams *QueryParams, res interface{}) (err error) {
 
 	resp, err := c.makeRequest(GET, obj, ref, queryParams)
