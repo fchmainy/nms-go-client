@@ -1,4 +1,4 @@
-package ibclient
+package nmsclient
 
 import (
 	"fmt"
